@@ -1,0 +1,23 @@
+{
+  "app": "paperlane",
+  "schema": 1,
+  "rules": {
+    "mode": "key",
+    "every": 1,
+    "ranges": "",
+    "carry": false,
+    "pattern": "{key}_{name}",
+    "keyArea": {
+      "x": 0.1,
+      "y": 0.163,
+      "w": 0.55,
+      "h": 0.027
+    },
+    "nameArea": {
+      "x": 0.1,
+      "y": 0.211,
+      "w": 0.6,
+      "h": 0.027
+    }
+  }
+}

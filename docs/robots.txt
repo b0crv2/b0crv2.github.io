@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /tool/
+Disallow: /vendor/
+Disallow: /locales/
+Sitemap: https://b0crv2.github.io/sitemap.xml

@@ -1,0 +1,10 @@
+{
+  "status": "live",
+  "checkoutEnabled": true,
+  "paymentProvider": "Lemon Squeezy",
+  "product": "Paperlane for Windows v1",
+  "currency": "USD",
+  "plannedPrice": 12,
+  "billing": "one-time",
+  "updated": "2026-10-17"
+}

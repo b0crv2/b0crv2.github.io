@@ -19,8 +19,8 @@
   "of": "di",
   "mode": "Dividi per",
   "fixed": "Ogni N pagine",
-  "key": "Variazione del testo selezionato",
-  "ranges": "Intervalli di pagine personalizzati",
+  "key": "Variazione di testo",
+  "ranges": "Intervalli di pagine",
   "every": "Pagine per documento",
   "rangeLabel": "Intervalli, ad es. 1-2, 3, 4-6",
   "rangeHint": "Includi ogni pagina esattamente una volta, nell’ordine originale.",
@@ -121,6 +121,8 @@
   "partialFolder": "{count} file sono già stati scritti in «{folder}». Controlla o elimina quella cartella prima di riprovare.",
   "faq7q": "Posso elaborare più PDF insieme?",
   "faq7a": "Sì. Apri fino a 20 PDF insieme. Le stesse regole valgono per ogni file e ciascun file ha la propria sottocartella. Traccia le aree su un file rappresentativo e controlla ogni risultato prima di salvare.",
+  "tooMuchTotal": "Aggiungendo questo file si supererebbe il limite totale del gruppo di 200 MB e 2.000 pagine. Aprilo in un gruppo separato.",
+  "type3Warning": "Controlla attentamente i nomi: in {files} viene usato un font il cui testo potrebbe non essere del tutto leggibile, quindi gli ID documento o i nomi potrebbero essere incompleti.",
   "demoLimit": "La demo gratuita esporta file con un massimo di 3 pagine di input totali. L’originale resta invariato. Usa l’esempio integrato per provare gruppi più grandi oppure consulta la versione Windows.",
   "pricing": "Prezzi"
 }

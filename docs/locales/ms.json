@@ -121,6 +121,8 @@
   "partialFolder": "{count} fail sudah ditulis ke “{folder}”. Semak atau padam folder itu sebelum mencuba semula.",
   "faq7q": "Adakah saya boleh memproses beberapa PDF sekali gus?",
   "faq7a": "Ya. Buka sehingga 20 PDF serentak. Peraturan yang sama digunakan untuk setiap fail, dan setiap fail mendapat subfolder sendiri. Lukis kawasan pada fail yang mewakili dan semak setiap hasil sebelum menyimpan.",
+  "tooMuchTotal": "Menambah fail ini akan melebihi had keseluruhan kelompok, iaitu 200 MB dan 2,000 halaman. Buka fail ini dalam kelompok berasingan.",
+  "type3Warning": "Semak nama dengan teliti: {files} menggunakan fon yang teksnya mungkin tidak dapat dibaca sepenuhnya, jadi ID dokumen atau nama mungkin tidak lengkap.",
   "demoLimit": "Demo percuma hanya mengeksport jika jumlah keseluruhan fail input tidak melebihi 3 halaman. Fail asal anda tidak berubah. Gunakan contoh terbina dalam untuk menguji kumpulan lebih besar, atau lihat versi Windows.",
   "pricing": "Harga"
 }

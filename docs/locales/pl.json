@@ -19,7 +19,7 @@
   "of": "z",
   "mode": "Podziel według",
   "fixed": "Co N stron",
-  "key": "Zmiany zaznaczonego tekstu",
+  "key": "Zmiana tekstu",
   "ranges": "Własnych zakresów stron",
   "every": "Strony na dokument",
   "rangeLabel": "Zakresy, np. 1-2, 3, 4-6",
@@ -121,6 +121,8 @@
   "partialFolder": "Pliki już zapisane w folderze „{folder}”: {count}. Sprawdź lub usuń ten folder, zanim spróbujesz ponownie.",
   "faq7q": "Czy mogę przetworzyć kilka plików PDF naraz?",
   "faq7a": "Tak. Otwórz do 20 plików PDF jednocześnie. Te same reguły dotyczą każdego pliku, a każdy plik otrzymuje własny podfolder. Zaznacz obszary na reprezentatywnym pliku i sprawdź każdy wynik przed zapisaniem.",
+  "tooMuchTotal": "Dodanie tego pliku przekroczyłoby łączny limit partii wynoszący 200 MB i 2000 stron. Otwórz go w osobnej partii.",
+  "type3Warning": "Uważnie sprawdź nazwy: w {files} użyto czcionki, której tekst może nie być w pełni czytelny, dlatego ID dokumentów lub nazwy mogą być niekompletne.",
   "demoLimit": "Darmowe demo eksportuje pliki zawierające łącznie do 3 stron wejściowych. Oryginał pozostaje niezmieniony. Użyj wbudowanego przykładu, aby przetestować większe grupy, lub sprawdź wersję Windows.",
   "pricing": "Cennik"
 }

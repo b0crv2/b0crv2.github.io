@@ -1,4 +1,4 @@
-export const VERSION = '1.1.0';
+export const VERSION = '1.1.1';
 export const LIMITS = Object.freeze({bytes:50*1024*1024,pages:300,files:20,totalBytes:200*1024*1024,totalPages:2000});
 export class AppError extends Error { constructor(code, data={}) { super(code); this.code=code; this.data=data; } }
 export function fail(code,data) { throw new AppError(code,data); }
@@ -13,13 +13,16 @@ export function extractArea(items,area) {
   }
   return lines.map(l=>{
     const rtl=l.items.filter(i=>i.dir==='rtl').length>l.items.length/2;
-    return l.items.sort((a,b)=>rtl?b.x-a.x:a.x-b.x).map(i=>i.text).join(' ');
-  }).join(' ').replace(/\s+/gu,' ').trim().normalize('NFC');
+    // Pieces that touch (a font change inside a word, one glyph per piece) join without a space.
+    const items=l.items.sort((a,b)=>rtl?b.x-a.x:a.x-b.x);let out='';
+    items.forEach((i,k)=>{if(k){const p=items[k-1],gap=rtl?p.x-(i.x+i.w):i.x-(p.x+p.w),em=Math.max(i.fs||0,p.fs||0);out+=(em>0&&gap<em*.12)?'':' ';}out+=i.text;});
+    return out;
+  }).join(' ').normalize('NFC').replace(/[\uFB00-\uFDFF\uFE70-\uFEFF]/gu,c=>c.normalize('NFKC')).normalize('NFC').replace(/\u0E4D\u0E32/gu,'\u0E33').replace(/\u0ECD\u0EB2/gu,'\u0EB3').replace(/\s+/gu,' ').trim();
 }
 export function cleanFilename(value, fallback='document') {
   let name=String(value).normalize('NFC').replace(/\.pdf$/i,'').replace(/[<>:"/\\|?*\u0000-\u001f\u007f-\u009f\u202a-\u202e\u2066-\u2069]/gu,'_').replace(/\s+/gu,' ').replace(/^[ .]+|[ .]+$/g,'');
   if(!name) name=fallback;
-  if(/^(con|prn|aux|nul|com[1-9¹²³]|lpt[1-9¹²³])(?:\.|$)/i.test(name)) name='_'+name;
+  if(/^(con|prn|aux|nul|clock\$|conin\$|conout\$|com[0-9¹²³]|lpt[0-9¹²³]) *(?:\.|$)/i.test(name)) name='_'+name;
   // Leave room for a suffix and extension on byte-limited filesystems.
   while(new TextEncoder().encode(name).length>150 || name.length>120) name=Array.from(name).slice(0,-1).join('');
   return name.replace(/[ .]+$/g,'')||fallback;

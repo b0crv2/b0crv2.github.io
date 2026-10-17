@@ -19,7 +19,7 @@
   "of": "trên",
   "mode": "Tách theo",
   "fixed": "Mỗi N trang",
-  "key": "Thay đổi trong văn bản đã chọn",
+  "key": "Thay đổi văn bản",
   "ranges": "Khoảng trang tùy chỉnh",
   "every": "Số trang mỗi tài liệu",
   "rangeLabel": "Khoảng trang, ví dụ: 1-2, 3, 4-6",
@@ -121,6 +121,8 @@
   "partialFolder": "Đã ghi {count} tệp vào “{folder}”. Hãy kiểm tra hoặc xóa thư mục đó trước khi thử lại.",
   "faq7q": "Tôi có thể xử lý nhiều PDF cùng lúc không?",
   "faq7a": "Có. Mở tối đa 20 PDF cùng lúc. Cùng một quy tắc áp dụng cho mọi tệp và mỗi tệp có thư mục con riêng. Hãy vẽ vùng trên một tệp tiêu biểu và kiểm tra mọi kết quả trước khi lưu.",
+  "tooMuchTotal": "Thêm tệp này sẽ vượt giới hạn tổng của một lượt xử lý là 200 MB và 2.000 trang. Hãy mở tệp này trong một lượt riêng.",
+  "type3Warning": "Hãy kiểm tra kỹ tên: {files} dùng phông chữ có thể không đọc được đầy đủ văn bản, nên mã tài liệu hoặc tên có thể bị thiếu.",
   "demoLimit": "Demo miễn phí chỉ cho phép xuất khi tổng tệp đầu vào không quá 3 trang. Tệp gốc không thay đổi. Dùng mẫu tích hợp sẵn để thử nhóm lớn hơn, hoặc xem bản Windows.",
   "pricing": "Giá"
 }

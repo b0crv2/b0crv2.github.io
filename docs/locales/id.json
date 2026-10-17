@@ -121,6 +121,8 @@
   "partialFolder": "{count} file sudah ditulis ke “{folder}”. Periksa atau hapus folder tersebut sebelum mencoba lagi.",
   "faq7q": "Apakah saya dapat memproses beberapa PDF sekaligus?",
   "faq7a": "Ya. Buka hingga 20 PDF bersamaan. Aturan yang sama berlaku untuk setiap file, dan setiap file mendapat subfolder sendiri. Tandai area pada file yang representatif dan periksa setiap hasil sebelum menyimpan.",
+  "tooMuchTotal": "Menambahkan file ini akan melebihi batas total batch, yaitu 200 MB dan 2.000 halaman. Buka file ini dalam batch terpisah.",
+  "type3Warning": "Periksa nama dengan cermat: {files} menggunakan font yang teksnya mungkin tidak terbaca sepenuhnya, sehingga ID dokumen atau nama bisa tidak lengkap.",
   "demoLimit": "Demo gratis hanya mengekspor jika total file masukan tidak lebih dari 3 halaman. File asli Anda tidak berubah. Gunakan contoh bawaan untuk menguji kelompok lebih besar, atau lihat versi Windows.",
   "pricing": "Harga"
 }

@@ -9,9 +9,11 @@ let dict={},english={},currentLanguage='en',languageRequest=0,nextId=1;
 const t=(key,data={})=>Object.entries(data).reduce((s,[k,v])=>s.replaceAll(`{${k}}`,String(v)),dict[key]||english[key]||key);
 const doc=()=>state.docs[state.current]||null;
 const errorCode=e=>e instanceof AppError?e.code:e?.name==='PasswordException'?'encrypted':'genericError';
-function notice(key,data={},error=false,extra=''){state.status={key,data,error,extra};if(error)state.error=key;$('status').hidden=false;$('status').classList.toggle('error',error);$('status').textContent=t(key,data)+(extra?`\n${extra}`:'');}
+function notice(key,data={},error=false,extra=''){state.status={key,data,error,extra};if(error)state.error=key;$('status').hidden=false;$('status').classList.toggle('error',error);const more=typeof extra==='function'?extra():extra;$('status').textContent=t(key,data)+(more?`\n${more}`:'');}
 function showError(error){notice(errorCode(error),error?.data||{},true);}
-function fileProblem(name,error){return t('fileProblem',{file:name,message:t(errorCode(error),error?.data||{})});}
+function fileProblem(name,error){return {name,code:errorCode(error),data:error?.data||{}};}
+const problemText=list=>()=>list.map(p=>t('fileProblem',{file:p.name,message:t(p.code,p.data)})).join('\n');
+const sizeText=d=>`\u2066${mb(d.size)} MB\u2069 · \u2068${d.pages.length} ${t('pages')}\u2069`;
 function planReady(){return state.planned&&state.docs.length>0&&state.docs.every(d=>!d.error&&d.plan.length);}
 function controls(){
   document.querySelectorAll('button,input,select').forEach(e=>{if(e.id!=='language')e.disabled=state.busy;});
@@ -34,9 +36,9 @@ function renderFiles(){
   const list=$('fileList');list.replaceChildren();list.hidden=!state.docs.length;
   state.docs.forEach((d,i)=>{
     const item=makeEl('div',undefined,'file-item'+(i===state.current?' current':''));item.setAttribute('role','listitem');
-    const pick=makeEl('button',undefined,'file-pick');pick.type='button';pick.setAttribute('aria-current',i===state.current?'true':'false');pick.setAttribute('aria-label',`${t('previewFile',{file:d.name})} · ${mb(d.size)} MB · ${d.pages.length} ${t('pages')}${d.flattened?' · '+t('formFixed'):''}`);
+    const pick=makeEl('button',undefined,'file-pick');pick.type='button';pick.setAttribute('aria-current',i===state.current?'true':'false');pick.setAttribute('aria-label',`${t('previewFile',{file:d.name})} · ${sizeText(d)}${d.flattened?' · '+t('formFixed'):''}`);
     const name=makeEl('span',d.name,'file-name');name.dir='auto';
-    pick.append(name,makeEl('small',`${mb(d.size)} MB · ${d.pages.length} ${t('pages')}`));
+    pick.append(name,makeEl('small',sizeText(d)));
     if(d.flattened)pick.append(makeEl('small',t('formFixed'),'badge'));
     pick.onclick=()=>task(()=>selectDoc(i));
     const remove=makeEl('button','×','file-remove');remove.type='button';remove.title=t('removeFile',{file:d.name});remove.setAttribute('aria-label',remove.title);
@@ -80,7 +82,9 @@ async function setLanguage(code){
   $('faqs').replaceChildren();for(let i=1;i<=7;i++){const d=makeEl('details');d.append(makeEl('summary',t(`faq${i}q`)),makeEl('p',t(`faq${i}a`)));$('faqs').append(d);}
   if(state.status)notice(state.status.key,state.status.data,state.status.error,state.status.extra);renderFiles();renderResults();areas();controls();
 }
-function pdfOptions(bytes){return {data:bytes.slice(),cMapUrl:new URL('./vendor/cmaps/',import.meta.url).href,cMapPacked:true,standardFontDataUrl:new URL('./vendor/standard_fonts/',import.meta.url).href,wasmUrl:new URL('./vendor/wasm/',import.meta.url).href,isEvalSupported:false,enableXfa:false,stopAtErrors:true};}
+let sharedWorker=null;
+const pdfWorker=()=>{if(!sharedWorker||sharedWorker.destroyed)sharedWorker=new pdfjs.PDFWorker();return sharedWorker;};
+function pdfOptions(bytes){return {worker:pdfWorker(),data:bytes.slice(),cMapUrl:new URL('./vendor/cmaps/',import.meta.url).href,cMapPacked:true,standardFontDataUrl:new URL('./vendor/standard_fonts/',import.meta.url).href,wasmUrl:new URL('./vendor/wasm/',import.meta.url).href,isEvalSupported:false,enableXfa:false,stopAtErrors:true};}
 function itemsForPage(content,viewport){
   return content.items.filter(i=>typeof i.str==='string').map(item=>{
     const tx=pdfjs.Util.transform(viewport.transform,item.transform), angle=Math.atan2(tx[1],tx[0]);
@@ -88,7 +92,7 @@ function itemsForPage(content,viewport){
     const ux=Math.cos(angle),uy=Math.sin(angle),nx=Math.sin(angle),ny=-Math.cos(angle);
     const points=[0,width].flatMap(w=>[-height*(1-ascent),height*ascent].map(h=>[tx[4]+ux*w+nx*h,tx[5]+uy*w+ny*h]));
     const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);
-    return {text:item.str,x:Math.min(...xs)/viewport.width,y:Math.min(...ys)/viewport.height,w:(Math.max(...xs)-Math.min(...xs))/viewport.width,h:(Math.max(...ys)-Math.min(...ys))/viewport.height,dir:item.dir};
+    return {text:item.str,fs:height/viewport.width,x:Math.min(...xs)/viewport.width,y:Math.min(...ys)/viewport.height,w:(Math.max(...xs)-Math.min(...xs))/viewport.width,h:(Math.max(...ys)-Math.min(...ys))/viewport.height,dir:item.dir};
   });
 }
 function textSignature(content){return content.items.filter(i=>typeof i.str==='string').map(i=>i.str).join('\u0000');}
@@ -100,6 +104,8 @@ async function clearAll(){
   renderFiles();renderResults();areas();controls();
 }
 // Reads one PDF fully: checks it, fixes visible form-field values into the page if it has a form, extracts text positions.
+// Type 3 fonts often carry no readable text; the ID/name areas may then miss characters.
+function hasType3(doc){const {PDFDict,PDFName}=PDFLib;for(const [,obj] of doc.context.enumerateIndirectObjects()){if(obj instanceof PDFDict&&obj.get(PDFName.of('Subtype'))?.toString()==='/Type3')return true;}return false;}
 async function readPdf(file){
   if(file.size>LIMITS.bytes)fail('tooLarge');
   const original=new Uint8Array(await file.arrayBuffer());
@@ -128,7 +134,7 @@ async function readPdf(file){
       pages.push({items:itemsForPage(content,viewport),signature:textSignature(content)});
       page.cleanup();
     }
-    return {id:nextId++,name:file.name,size:file.size,bytes,flattened,hash:await sha256(original),pages,plan:[],error:null};
+    return {id:nextId++,name:file.name,size:file.size,bytes,flattened,type3:hasType3(source),hash:await sha256(original),pages,plan:[],error:null};
   }catch(e){if(e instanceof AppError)throw e;if(e?.name==='PasswordException')fail('encrypted');fail('invalidPdf');}
   finally{if(pdf)await pdf.destroy();}
 }
@@ -141,10 +147,9 @@ async function addFiles(files){
     notice('openingFile',{file:file.name,n:n+1,total:files.length});
     try{
       if(state.docs.length>=LIMITS.files)fail('tooMany');
-      if(state.docs.reduce((s,d)=>s+d.size,0)+file.size>LIMITS.totalBytes)fail('tooMany');
       const d=await readPdf(file);
       if(state.docs.some(x=>x.hash===d.hash))fail('duplicateFile');
-      if(state.docs.reduce((s,x)=>s+x.pages.length,0)+d.pages.length>LIMITS.totalPages)fail('tooMany');
+      if(state.docs.reduce((s,x)=>s+x.size,0)+d.size>LIMITS.totalBytes||state.docs.reduce((s,x)=>s+x.pages.length,0)+d.pages.length>LIMITS.totalPages)fail('tooMuchTotal');
       state.docs.push(d);
     }catch(e){problems.push(fileProblem(file.name,e));}
   }
@@ -152,7 +157,7 @@ async function addFiles(files){
   state.planned=false;state.docs.forEach(d=>{d.plan=[];d.error=null;});
   if(added&&!state.pdf)await selectDoc(before);
   renderFiles();renderResults();
-  if(problems.length)notice(added?'someSkipped':'noneAdded',{count:problems.length},true,problems.join('\n'));
+  if(problems.length)notice(added?'someSkipped':'noneAdded',{count:problems.length},true,problemText(problems));
   else notice(state.docs.length>1?'filesOpened':'fileOpened',{files:state.docs.length});
 }
 async function selectDoc(i){
@@ -198,9 +203,12 @@ function analyze(){
   cancelSelection();const r=rules();let failed=0;
   for(const d of state.docs){d.plan=[];d.error=null;try{d.plan=makePlan(d.pages,r,d.name);}catch(e){failed++;d.error={code:errorCode(e),data:e?.data||{}};}}
   state.planned=true;renderResults();
-  if(!failed){notice('ready');return;}
-  if(state.docs.length===1){const e=state.docs[0].error;notice(e.code,e.data,true);return;}
-  notice('batchProblem',{count:failed},true,state.docs.filter(d=>d.error).map(d=>t('fileProblem',{file:d.name,message:t(d.error.code,d.error.data)})).join('\n'));
+  const unread=r.mode==='key'||/\{(key|name)\}/.test(r.pattern)?state.docs.filter(d=>d.type3).map(d=>d.name):[];
+  const warning=()=>unread.length?t('type3Warning',{files:unread.join(', ')}):'';
+  if(!failed){notice('ready',{},false,warning);return;}
+  if(state.docs.length===1){const e=state.docs[0].error;notice(e.code,e.data,true,warning);return;}
+  const problems=problemText(state.docs.filter(d=>d.error).map(d=>({name:d.name,code:d.error.code,data:d.error.data})));
+  notice('batchProblem',{count:failed},true,()=>[problems(),warning()].filter(Boolean).join('\n'));
 }
 // Builds every output PDF, reopens each one and checks page count, geometry and page text against the opened document.
 async function buildOutputs(onDoc){
@@ -244,7 +252,7 @@ $('download').onclick=()=>task(async()=>{
   const zip=new JSZip();
   const manifest=await buildOutputs(async(entry,outputs)=>{const target=entry.folder?zip.folder(entry.folder):zip;for(const o of outputs)target.file(o.filename,o.bytes);});
   zip.file('manifest.json',JSON.stringify(manifest,null,2));
-  downloadBlob(await zip.generateAsync({type:'blob',compression:'DEFLATE',compressionOptions:{level:3}}),'paperlane-documents.zip');notice('done');
+  downloadBlob(await zip.generateAsync({type:'blob',compression:'STORE'}),'paperlane-documents.zip');notice('done');
 });
 $('saveFolder').onclick=()=>task(async()=>{
   if(!planReady())return;
@@ -256,7 +264,7 @@ $('saveFolder').onclick=()=>task(async()=>{
     const root=await parent.getDirectoryHandle(name,{create:true});
     const manifest=await buildOutputs(async(entry,outputs)=>{const dir=entry.folder?await root.getDirectoryHandle(entry.folder,{create:true}):root;for(const o of outputs){await writeFile(dir,o.filename,o.bytes);written++;}});
     await writeFile(root,'manifest.json',new Blob([JSON.stringify(manifest,null,2)],{type:'application/json'}));
-  }catch(e){const code=errorCode(e);notice(code==='genericError'?'folderError':code,{folder:name,count:written},true,written?t('partialFolder',{folder:name,count:written}):'');return;}
+  }catch(e){const code=errorCode(e);notice(code==='genericError'?'folderError':code,{folder:name,count:written},true,written?()=>t('partialFolder',{folder:name,count:written}):'');return;}
   notice('folderDone',{folder:name,count:written});
 });
 $('saveTemplate').onclick=()=>task(async()=>{const template={app:'paperlane',schema:1,rules:rules()};parseTemplate(template);jsonDownload(template,'paperlane-rules.json');notice('saved');});

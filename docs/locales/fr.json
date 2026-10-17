@@ -19,8 +19,8 @@
   "of": "sur",
   "mode": "Séparer selon",
   "fixed": "Toutes les N pages",
-  "key": "Un changement du texte sélectionné",
-  "ranges": "Des plages de pages personnalisées",
+  "key": "Changement de texte",
+  "ranges": "Plages de pages",
   "every": "Pages par document",
   "rangeLabel": "Plages, par ex. 1-2, 3, 4-6",
   "rangeHint": "Incluez chaque page exactement une fois, dans l’ordre d’origine.",
@@ -121,6 +121,8 @@
   "partialFolder": "{count} fichier(s) ont déjà été écrits dans « {folder} ». Vérifiez ou supprimez ce dossier avant de réessayer.",
   "faq7q": "Puis-je traiter plusieurs PDF à la fois ?",
   "faq7a": "Oui. Ouvrez jusqu’à 20 PDF ensemble. Les mêmes règles s’appliquent à chaque fichier, et chaque fichier obtient son propre sous-dossier. Tracez les zones sur un fichier représentatif et vérifiez chaque résultat avant l’enregistrement.",
+  "tooMuchTotal": "L’ajout de ce fichier dépasserait la limite totale du lot, soit 200 Mo et 2 000 pages. Ouvrez-le dans un lot distinct.",
+  "type3Warning": "Vérifiez attentivement les noms : le texte de {files} utilise une police qui peut ne pas être entièrement lisible. Les identifiants de document ou les noms peuvent donc être incomplets.",
   "demoLimit": "La démo gratuite exporte des fichiers comptant au maximum 3 pages d’entrée au total. Votre original reste inchangé. Utilisez l’exemple intégré pour tester des groupes plus volumineux ou consultez la version Windows.",
   "pricing": "Tarifs"
 }

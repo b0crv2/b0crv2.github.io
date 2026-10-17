@@ -121,6 +121,8 @@
   "partialFolder": "{count} dosya zaten “{folder}” klasörüne yazıldı. Yeniden denemeden önce bu klasörü kontrol edin veya silin.",
   "faq7q": "Birden fazla PDF'yi aynı anda işleyebilir miyim?",
   "faq7a": "Evet. En fazla 20 PDF'yi birlikte açın. Aynı kurallar her dosyaya uygulanır ve her dosya kendi alt klasörünü alır. Temsili bir dosyada alanları çizin ve kaydetmeden önce her sonucu kontrol edin.",
+  "tooMuchTotal": "Bu dosyayı eklemek, toplu işlem başına toplam 200 MB ve 2.000 sayfa sınırını aşar. Dosyayı ayrı bir toplu işlemde açın.",
+  "type3Warning": "Adları dikkatle kontrol edin: {files} tam okunamayabilecek bir yazı tipi kullanıyor. Bu nedenle belge kimlikleri veya adlar eksik olabilir.",
   "demoLimit": "Ücretsiz demo, toplam girdi sayfa sayısı en fazla 3 olan dosyaları dışa aktarır. Özgün dosyanız değişmez. Daha büyük grupları test etmek için yerleşik örneği kullanın veya Windows sürümünü inceleyin.",
   "pricing": "Fiyatlandırma"
 }

@@ -19,7 +19,7 @@
   "of": "von",
   "mode": "Aufteilen nach",
   "fixed": "Jeweils N Seiten",
-  "key": "Änderung des ausgewählten Texts",
+  "key": "Textänderung",
   "ranges": "Eigenen Seitenbereichen",
   "every": "Seiten pro Dokument",
   "rangeLabel": "Bereiche, z. B. 1-2, 3, 4-6",
@@ -121,6 +121,8 @@
   "partialFolder": "{count} Datei(en) wurden bereits in „{folder}“ geschrieben. Prüfen oder löschen Sie diesen Ordner, bevor Sie es erneut versuchen.",
   "faq7q": "Kann ich mehrere PDFs gleichzeitig verarbeiten?",
   "faq7a": "Ja. Öffnen Sie bis zu 20 PDFs zusammen. Für alle Dateien gelten dieselben Regeln, und jede Datei erhält einen eigenen Unterordner. Zeichnen Sie die Bereiche in einer repräsentativen Datei und prüfen Sie vor dem Speichern jedes Ergebnis.",
+  "tooMuchTotal": "Mit dieser Datei würde das Gesamtlimit pro Durchgang von 200 MB und 2.000 Seiten überschritten. Öffnen Sie sie in einem separaten Durchgang.",
+  "type3Warning": "Prüfen Sie die Namen sorgfältig: In {files} wird eine Schriftart verwendet, deren Text möglicherweise nicht vollständig lesbar ist. Dokument-IDs oder Namen können daher unvollständig sein.",
   "demoLimit": "Die kostenlose Demo exportiert Dateien mit insgesamt bis zu 3 Eingabeseiten. Das Original bleibt unverändert. Testen Sie größere Gruppen mit dem integrierten Beispiel oder informieren Sie sich über die Windows-Version.",
   "pricing": "Preise"
 }

@@ -19,8 +19,8 @@
   "of": "de",
   "mode": "Separar por",
   "fixed": "A cada N páginas",
-  "key": "Mudança no texto selecionado",
-  "ranges": "Intervalos de páginas personalizados",
+  "key": "Mudança de texto",
+  "ranges": "Intervalos de páginas",
   "every": "Páginas por documento",
   "rangeLabel": "Intervalos, por exemplo: 1-2, 3, 4-6",
   "rangeHint": "Inclua cada página exatamente uma vez, na ordem original.",
@@ -121,6 +121,8 @@
   "partialFolder": "{count} arquivo(s) já foram gravados em “{folder}”. Verifique ou exclua essa pasta antes de tentar novamente.",
   "faq7q": "Posso processar vários PDFs de uma vez?",
   "faq7a": "Sim. Abra até 20 PDFs juntos. As mesmas regras se aplicam a todos os arquivos, e cada arquivo recebe sua própria subpasta. Desenhe as áreas em um arquivo representativo e confira todos os resultados antes de salvar.",
+  "tooMuchTotal": "Adicionar este arquivo ultrapassaria o limite total do lote de 200 MB e 2.000 páginas. Abra-o em um lote separado.",
+  "type3Warning": "Confira os nomes com atenção: em {files} é usada uma fonte cujo texto talvez não seja totalmente legível, então IDs de documento ou nomes podem ficar incompletos.",
   "demoLimit": "A demonstração gratuita exporta arquivos com até 3 páginas de entrada no total. Seu original não é alterado. Use o exemplo integrado para testar grupos maiores ou confira a versão Windows.",
   "pricing": "Preços"
 }

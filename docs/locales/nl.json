@@ -19,7 +19,7 @@
   "of": "van",
   "mode": "Splitsen op",
   "fixed": "Elke N pagina’s",
-  "key": "Wijziging in geselecteerde tekst",
+  "key": "Tekstwijziging",
   "ranges": "Zelfgekozen paginabereiken",
   "every": "Pagina’s per document",
   "rangeLabel": "Bereiken, bijv. 1-2, 3, 4-6",
@@ -121,6 +121,8 @@
   "partialFolder": "{count} bestand(en) zijn al naar “{folder}” geschreven. Controleer of verwijder die map voordat je het opnieuw probeert.",
   "faq7q": "Kan ik meerdere PDF’s tegelijk verwerken?",
   "faq7a": "Ja. Open maximaal 20 PDF’s tegelijk. Dezelfde regels gelden voor elk bestand en elk bestand krijgt een eigen submap. Teken gebieden op een representatief bestand en controleer elk resultaat voordat je opslaat.",
+  "tooMuchTotal": "Met dit bestand zou de totale limiet per batch van 200 MB en 2.000 pagina’s worden overschreden. Open het in een aparte batch.",
+  "type3Warning": "Controleer de namen zorgvuldig: in {files} wordt een lettertype gebruikt waarvan de tekst mogelijk niet volledig leesbaar is, waardoor document-ID’s of namen onvolledig kunnen zijn.",
   "demoLimit": "De gratis demo exporteert bestanden met in totaal maximaal 3 invoerpagina’s. Je origineel blijft ongewijzigd. Gebruik het ingebouwde voorbeeld om grotere groepen te testen of bekijk de Windows-versie.",
   "pricing": "Prijzen"
 }

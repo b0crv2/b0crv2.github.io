@@ -19,8 +19,8 @@
   "of": "de",
   "mode": "Dividir por",
   "fixed": "Cada N páginas",
-  "key": "Cambio en el texto seleccionado",
-  "ranges": "Rangos de páginas personalizados",
+  "key": "Cambio de texto",
+  "ranges": "Rangos de páginas",
   "every": "Páginas por documento",
   "rangeLabel": "Rangos, p. ej. 1-2, 3, 4-6",
   "rangeHint": "Incluye cada página exactamente una vez, en el orden original.",
@@ -121,6 +121,8 @@
   "partialFolder": "Ya se escribieron {count} archivo(s) en «{folder}». Revisa o elimina esa carpeta antes de volver a intentarlo.",
   "faq7q": "¿Puedo procesar varios PDF a la vez?",
   "faq7a": "Sí. Abre hasta 20 PDF juntos. Las mismas reglas se aplican a todos los archivos, y cada archivo tiene su propia subcarpeta. Dibuja las áreas en un archivo representativo y revisa todos los resultados antes de guardar.",
+  "tooMuchTotal": "Si añades este archivo, se superaría el límite total del lote de 200 MB y 2.000 páginas. Ábrelo en un lote aparte.",
+  "type3Warning": "Revisa los nombres con atención: en {files} se usa una fuente cuyo texto quizá no se pueda leer por completo, por lo que los ID de documento o los nombres pueden estar incompletos.",
   "demoLimit": "La demo gratuita exporta archivos con un máximo de 3 páginas de entrada en total. El original no cambia. Usa el ejemplo integrado para probar grupos más grandes o consulta la versión para Windows.",
   "pricing": "Precios"
 }

@@ -121,6 +121,8 @@
   "partialFolder": "{count} file(s) were already written to “{folder}”. Check or delete that folder before trying again.",
   "faq7q": "Can I process several PDFs at once?",
   "faq7a": "Yes. Open up to 20 PDFs together. The same rules apply to every file, and each file gets its own subfolder. Draw areas on a representative file and check every result before saving.",
+  "tooMuchTotal": "Adding this file would exceed the batch limit of 200 MB and 2,000 pages in total. Open it in a separate batch.",
+  "type3Warning": "Check the names carefully: {files} uses a font whose text may not be fully readable, so document IDs or names can be incomplete.",
   "demoLimit": "The free demo exports files with up to 3 total input pages. Your original is unchanged. Use the built-in sample to test larger groups, or check the Windows version.",
   "pricing": "Pricing"
 }

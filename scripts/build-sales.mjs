@@ -13,7 +13,7 @@ for(const [lang,native]of languages){
  const s=JSON.parse(fs.readFileSync(`commerce/${lang}.json`,'utf8')),app=JSON.parse(fs.readFileSync(`docs/locales/${lang}.json`,'utf8'));
  const en=JSON.parse(fs.readFileSync('commerce/en.json','utf8'));if(JSON.stringify(Object.keys(s).sort())!==JSON.stringify(Object.keys(en).sort()))throw Error(`Incomplete locale ${lang}`);
  const home=`${origin}/${lang}/`,rtl=['ar','he','fa','ur'].includes(lang);
- const metadata={"@context":"https://schema.org","@type":"SoftwareApplication",name:'Paperlane for Windows v1',applicationCategory:'BusinessApplication',operatingSystem:'Windows',description:s.description,url:home,softwareVersion:'1.1.0',inLanguage:languages.map(x=>x[0])};
+ const metadata={"@context":"https://schema.org","@type":"SoftwareApplication",name:'Paperlane for Windows v1',applicationCategory:'BusinessApplication',operatingSystem:'Windows',description:s.description,url:home,softwareVersion:'1.1.1',inLanguage:languages.map(x=>x[0])};
  if(gate.enabled)metadata.offers={"@type":"Offer",price:config.price,priceCurrency:config.currency,url:gate.url,availability:'https://schema.org/InStock'};
  const checkout=gate.enabled?`<a class="cta" href="${esc(gate.url)}" rel="noopener noreferrer">${esc(s.buy)}</a><p class="fine">${esc(s.delivery)}</p>`:`<div class="status">${esc(s.pending)}</div><p class="fine">${esc(s.pendingDetail)}</p>`;
  const guideLanguage=lang==='ko'?'ko':'en';

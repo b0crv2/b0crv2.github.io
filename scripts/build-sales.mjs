@@ -32,5 +32,6 @@ for(const [route,doc]of Object.entries(docs)){
 fs.writeFileSync(path.join(dist,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map(u=>`<url><loc>${esc(u)}</loc></url>`).join('')}</urlset>`);
 fs.writeFileSync(path.join(dist,'robots.txt'),`User-agent: *\nAllow: /\nDisallow: /tool/\nDisallow: /vendor/\nDisallow: /locales/\nSitemap: ${origin}/sitemap.xml\n`);
 fs.writeFileSync(path.join(dist,'launch-status.json'),JSON.stringify({status:config.stage,checkoutEnabled:gate.enabled,paymentProvider:'Lemon Squeezy',product:config.product,currency:config.currency,plannedPrice:config.price,billing:config.billing,updated:'2026-10-17'},null,2));
+if(config.indexNowKey){if(!/^[a-f0-9]{32}$/.test(config.indexNowKey))throw Error('Invalid IndexNow key');fs.writeFileSync(path.join(dist,`${config.indexNowKey}.txt`),config.indexNowKey);}
 if(config.searchConsoleVerification){if(!/^[a-zA-Z0-9_-]+$/.test(config.searchConsoleVerification))throw Error('Invalid verification token');fs.writeFileSync(path.join(dist,`google${config.searchConsoleVerification}.html`),`google-site-verification: google${config.searchConsoleVerification}.html`);}
 console.log(JSON.stringify({pages:urls.length,locales:languages.length,checkoutEnabled:gate.enabled,status:config.stage}));

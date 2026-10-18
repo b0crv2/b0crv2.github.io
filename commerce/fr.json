@@ -31,7 +31,7 @@
  "freeRelease": "Démo gratuite · export de 3 pages d’entrée maximum",
  "faqPurchase": "La démo dans le navigateur est gratuite. La version Windows fait l’objet d’un achat unique distinct. Vous pouvez être remboursé sous 14 jours après l’achat, sans justification. Votre version téléchargée n’expire pas. Les futures versions majeures et la configuration personnalisée des documents ne sont pas incluses.",
  "guidesTitle": "Guides PDF pratiques",
- "guidesDetail": "Des exemples pas à pas sur les identifiants de documents, les noms de fichiers et les règles réutilisables. Les guides sont actuellement disponibles en anglais et en coréen.",
+ "guidesDetail": "Des exemples pas à pas sur les identifiants de documents, les noms de fichiers et les règles réutilisables.",
  "updated": "Version 1.1",
  "back": "Retour à Paperlane",
  "seller": "Vendu par Noonworks · Contact : {{SUPPORT_EMAIL}}"

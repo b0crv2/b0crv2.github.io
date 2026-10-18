@@ -31,7 +31,7 @@
  "freeRelease": "免费演示版 · 可导出总计不超过 3 页的输入文件",
  "faqPurchase": "浏览器演示版免费。Windows 版需单独一次性购买。购买后 14 天内可无理由退款。下载的版本没有使用期限。不包含未来的主要版本或个性化文档设置服务。",
  "guidesTitle": "实用 PDF 指南",
- "guidesDetail": "通过分步示例了解文档编号、文件名和可重复使用的规则。指南目前提供英语和韩语版本。",
+ "guidesDetail": "通过分步示例了解文档编号、文件名和可重复使用的规则。",
  "updated": "版本 1.1",
  "back": "返回 Paperlane",
  "seller": "销售方：Noonworks · 联系方式：{{SUPPORT_EMAIL}}"

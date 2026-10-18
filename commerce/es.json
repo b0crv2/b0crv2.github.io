@@ -31,7 +31,7 @@
  "freeRelease": "Demo gratuita · exporta hasta 3 páginas de entrada",
  "faqPurchase": "La demo del navegador es gratuita. La versión para Windows es una compra única independiente. Puedes solicitar el reembolso dentro de los 14 días posteriores a la compra, sin preguntas. La versión descargada no caduca. No se incluyen futuras versiones principales ni la configuración personalizada de documentos.",
  "guidesTitle": "Guías prácticas de PDF",
- "guidesDetail": "Ejemplos paso a paso sobre ID de documento, nombres de archivo y reglas reutilizables. Las guías están disponibles actualmente en inglés y coreano.",
+ "guidesDetail": "Ejemplos paso a paso sobre ID de documento, nombres de archivo y reglas reutilizables.",
  "updated": "Versión 1.1",
  "back": "Volver a Paperlane",
  "seller": "Vendido por Noonworks · Contacto: {{SUPPORT_EMAIL}}"

@@ -31,7 +31,7 @@
  "freeRelease": "Free demo · export up to 3 input pages",
  "faqPurchase": "The browser demo is free. The Windows version is a separate one-time purchase. Refunds are available within 14 days of purchase, no questions asked. Your downloaded version does not expire. Future major versions and personalized document setup are not included.",
  "guidesTitle": "Practical PDF guides",
- "guidesDetail": "Step-by-step examples for document IDs, filenames and reusable rules. Guides are currently available in English and Korean.",
+ "guidesDetail": "Step-by-step examples for document IDs, filenames and reusable rules.",
  "updated": "Version 1.1",
  "back": "Back to Paperlane",
  "seller": "Sold by Noonworks · Contact: {{SUPPORT_EMAIL}}"
